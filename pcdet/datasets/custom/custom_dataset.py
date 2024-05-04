@@ -186,6 +186,7 @@ class CustomDataset(DatasetTemplate):
             gt_boxes = annos['gt_boxes_lidar']
 
             num_obj = gt_boxes.shape[0]
+            print(points)
             point_indices = roiaware_pool3d_utils.points_in_boxes_cpu(
                 torch.from_numpy(points[:, 0:3]), torch.from_numpy(gt_boxes)
             ).numpy()  # (nboxes, npoints)
@@ -277,7 +278,7 @@ if __name__ == '__main__':
         ROOT_DIR = (Path(__file__).resolve().parent / '../../../').resolve()
         create_custom_infos(
             dataset_cfg=dataset_cfg,
-            class_names=['Vehicle', 'Pedestrian', 'Cyclist'],
+            class_names=['Outpost'],
             data_path=ROOT_DIR / 'data' / 'custom',
             save_path=ROOT_DIR / 'data' / 'custom',
         )

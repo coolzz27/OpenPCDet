@@ -7,6 +7,8 @@ data/
 venv/
 *.idea/
 *.so
+*.log
+events.*
 *.yaml
 *.sh
 *.pth
@@ -15,3 +17,6 @@ venv/
 *.bin
 output
 version.py
+.vscode/settings.json
+docs/train_custom_from_zhihu.pdf
+

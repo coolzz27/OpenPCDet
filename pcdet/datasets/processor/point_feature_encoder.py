@@ -44,6 +44,9 @@ class PointFeatureEncoder(object):
         if points is None:
             num_output_features = len(self.used_feature_list)
             return num_output_features
+        
+        # print("points.shape: ", points.shape)
+        # print("self.src_feature_list", self.src_feature_list)
 
         assert points.shape[-1] == len(self.src_feature_list)
         point_feature_list = [points[:, 0:3]]
