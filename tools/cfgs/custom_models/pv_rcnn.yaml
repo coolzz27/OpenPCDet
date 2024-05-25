@@ -36,8 +36,8 @@ MODEL:
 
         ANCHOR_GENERATOR_CONFIG: [
             {
-                'class_name': 'Pedestrian',
-                'anchor_sizes': [[0.88, 1.067, 1.376]],
+                'class_name': 'Outpost',
+                'anchor_sizes': [[0.943, 1.045, 1.556]],
                 'anchor_rotations': [0, 1.57],
                 'anchor_bottom_heights': [0],
                 'align_center': False,
