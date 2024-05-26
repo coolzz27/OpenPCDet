@@ -20,3 +20,4 @@ version.py
 .vscode/settings.json
 docs/train_custom_from_zhihu.pdf
 
+ros/pointcloud/temp.npy
