@@ -12,18 +12,11 @@ from sensor_msgs.msg import PointCloud2
 import argparse
 import glob
 from pathlib import Path
+import open3d
 
 import sys
 sys.path.append('../tools')
-
-try:
-    import open3d
-    from visual_utils import open3d_vis_utils as V
-    OPEN3D_FLAG = True
-except:
-    import mayavi.mlab as mlab
-    from visual_utils import visualize_utils as V
-    OPEN3D_FLAG = False
+from visual_utils import open3d_vis_utils as V
 
 
 class DemoDataset(DatasetTemplate):
@@ -87,7 +80,6 @@ def parse_config():
 
 
 def main():
-    print(OPEN3D_FLAG)
     args, cfg = parse_config()
     logger = common_utils.create_logger()
     logger.info(
@@ -128,6 +120,11 @@ def main():
 
         with torch.no_grad():
             pred_dicts, _ = model.forward(data_dict)
+
+        # calculate the distance between origin and center of ref_boxes
+        xy_center = pred_dicts[0]['pred_boxes'][:, 0:2].cpu().numpy()
+        distance = np.linalg.norm(xy_center, axis=1)
+        rospy.loginfo('Distance: {}'.format(distance))
 
         # Visualize results using Open3D
 
@@ -174,10 +171,6 @@ def main():
             vis = V.draw_box(vis, ref_boxes, (0, 1, 0), ref_labels, ref_scores)
 
         vis.run()
-        # vis.destroy_window()
-
-        # if not OPEN3D_FLAG:
-        #     mlab.show(stop=True)
 
     logger.info('Demo done.')
 
