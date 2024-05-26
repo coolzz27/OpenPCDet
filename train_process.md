@@ -3,10 +3,9 @@
 ## rosbag 录制
 
 1. IPv4 设置 192.168.1.50，网线连接 livox mid70
-
-2. ```roslaunch livox_ros_driver livox_lidar_rviz.launch```
-
-3. ```rosbag record -O outpost.bag /livox/lidar```
+2. ```cd ~/ws_livox/ && source devel/setup.sh```
+3. ```roslaunch livox_ros_driver livox_lidar_rviz.launch```
+4. ```rosbag record -O outpost.bag /livox/lidar```
 
 ## 数据集准备
 
