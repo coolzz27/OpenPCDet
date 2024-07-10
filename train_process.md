@@ -47,3 +47,38 @@
     ```python3 demo.py --cfg_file cfgs/custom_models/pv_rcnn.yaml --data_path ../data/custom/points/ --ext .npy --ckpt ../output/custom_models/pv_rcnn/default/ckpt/checkpoint_epoch_{替换}.pth```
 
 - 可视化一帧pcd点云：```pcl_viewer <file_name>```
+
+## 使用 ros 实时检测
+
+1.
+    ```bash
+    roscore
+    ```
+
+    (terminal1)
+
+2.
+    ```bash
+    cd ~/ws_livox/ && source devel/setup.sh
+    roslaunch livox_ros_driver livox_lidar_rviz.launch
+    ```
+
+    (terminal2 用于实时显示点云)
+
+3.
+    ```bash
+    conda activate openmmlab
+    cd ./ros
+    python3 pointcloud_saver.py
+    ```
+
+    (terminal3 用于保存点云)
+
+4.
+    ```bash
+    conda activate openmmlab
+    cd ./ros
+    python3 ros_demo.py
+    ```
+
+    (terminal4 用于检测)
